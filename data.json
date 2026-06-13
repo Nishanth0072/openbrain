@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    {
+      "src": "/law/style2.css",
+      "dest": "/law/style2.css"
+    },
+    {
+      "src": "/law/script.js",
+      "dest": "/law/script.js"
+    },
+    {
+      "src": "/law/(.*)",
+      "dest": "/law/index.html"
+    },
+    {
+      "src": "/style.css",
+      "dest": "/style.css"
+    },
+    {
+      "src": "/script.js",
+      "dest": "/script.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}

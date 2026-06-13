@@ -1,0 +1,113 @@
+{
+  "name": "LeetCode Daily Tracker",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 20 * * *"
+            }
+          ]
+        }
+      },
+      "id": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+      "name": "Daily at 8 PM",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://leetcode.com/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": \"query userRecentSubmissionList($username: String!, $limit: Int!) { recentSubmissionList(username: $username, limit: $limit) { title titleSlug timestamp statusDisplay lang } }\",\n  \"variables\": {\n    \"username\": \"YOUR_LEETCODE_USERNAME\",\n    \"limit\": 1\n  }\n}"
+      },
+      "id": "2b3c4d5e-6f7a-8b9c-0d1e-2f3a4b5c6d7e",
+      "name": "Fetch LeetCode Submissions",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = items[0].json.data.recentSubmissionList;\nif (!data || data.length === 0) {\n  return [{ json: { message: \"No recent submissions found today! Keep grinding!\" } }];\n}\n\nconst latest = data[0];\nconst submissionTime = new Date(latest.timestamp * 1000);\nconst isToday = submissionTime.toDateString() === new Date().toDateString();\n\nreturn [{\n  json: {\n    title: latest.title,\n    status: latest.statusDisplay,\n    language: latest.lang,\n    link: `https://leetcode.com/problems/${latest.titleSlug}/`,\n    solvedToday: isToday,\n    message: isToday \n      ? `🔥 LeetCode Update! Solved: ${latest.title} (${latest.lang}) with status: ${latest.statusDisplay}!` \n      : \"⚠️ Reminder: You hasn't solved a LeetCode problem yet today! Go protect your streak!\"\n  }\n}];"
+      },
+      "id": "3c4d5e6f-7a8b-9c0d-1e2f-3a4b5c6d7e8f",
+      "name": "Check Streak & Format",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "notice": "Replace this with your Discord Webhook, Telegram, or WhatsApp bot node link.",
+        "url": "https://httpbin.org/post",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        }
+      },
+      "id": "4d5e6f7a-8b9c-0d1e-2f3a-4b5c6d7e8f9a",
+      "name": "Send Notification Router",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [960, 300]
+    }
+  ],
+  "connections": {
+    "Daily at 8 PM": {
+      "main": [
+        [
+          {
+            "node": "Fetch LeetCode Submissions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch LeetCode Submissions": {
+      "main": [
+        [
+          {
+            "node": "Check Streak & Format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Streak & Format": {
+      "main": [
+        [
+          {
+            "node": "Send Notification Router",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

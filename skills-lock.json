@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "bknd-deploy-hosting": {
+      "source": "cameronapak/bknd-skills",
+      "sourceType": "github",
+      "skillPath": "skills/bknd-deploy-hosting/SKILL.md",
+      "computedHash": "a479cd9da79535164a73348bdfa169be631871e6713992b7f3ceb73ebcba9538"
+    },
+    "firebase-hosting-basics": {
+      "source": "firebase/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/firebase-hosting-basics/SKILL.md",
+      "computedHash": "fb86fd4035e8e6379931faeb443557ac6f2e43fde04b397433f287e69b6532a9"
+    },
+    "frontend-enhancer": {
+      "source": "ailabs-393/ai-labs-claude-skills",
+      "sourceType": "github",
+      "skillPath": "packages/skills/frontend-enhancer/SKILL.md",
+      "computedHash": "ce3f050632febc5a0b58e78ef23589ea513af16150f6dfe053a2b26dd20c0ed8"
+    },
+    "frontend-testing": {
+      "source": "langgenius/dify",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/frontend-testing/SKILL.md",
+      "computedHash": "d2ea08c42f8994ee4596658f196d24320d8db6cd46086ba6bda187c034f93cb2"
+    }
+  }
+}
