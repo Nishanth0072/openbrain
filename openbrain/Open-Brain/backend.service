@@ -1,0 +1,17 @@
+[Unit]
+Description=Open-Brain Backend API Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/nishanth/openbrain/openbrain/Open-Brain
+Environment=NODE_ENV=production PORT=3000 N8N_BASE_URL=http://localhost:5678
+EnvironmentFile=/home/nishanth/openbrain/openbrain/Open-Brain/.env
+ExecStart=/usr/bin/node backend/server.js
+Restart=always
+RestartSec=3
+StandardOutput=append:/home/nishanth/openbrain/openbrain/Open-Brain/backend/bridge.log
+StandardError=append:/home/nishanth/openbrain/openbrain/Open-Brain/backend/bridge.log
+
+[Install]
+WantedBy=default.target

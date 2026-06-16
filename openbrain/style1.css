@@ -1,0 +1,127 @@
+
+/* ======================================================================
+⚡ OPENBRAIN PET GENERATOR EXTRACTOR: PICA ⚡
+======================================================================
+Copy the shell block below and run it in your terminal to unpack the 
+hatch-pica.sh script and the pet.json configuration manifests.
+
+cat << 'EOF' > hatch-pica.sh
+#!/bin/bash
+# Hatch-pica setup utility script
+
+PET_NAME="pica"
+RUN_DIR="/home/nishanth/openbrain/openbrainpet-run/${PET_NAME}"
+CHROMA="#FF00FF"
+
+mkdir -p "${RUN_DIR}"
+mkdir -p "${RUN_DIR}/cells"
+mkdir -p "/home/nishanth/openbrain/openbrain/pica"
+
+# Write pet.json manifest out to the pica asset directory
+cat << 'MANIFEST_EOF' > "/home/nishanth/openbrain/openbrain/pica/pet.json"
+{
+  "id": "pica",
+  "displayName": "Pica",
+  "description": "A loyal, electric-yellow chibi rodent companion that sparks up when your builds pass and bobs happily while you refactor.",
+  "spritesheetPath": "spritesheet.webp"
+}
+MANIFEST_EOF
+
+echo "⚡ Step 1: Generating the canonical chibi Pica pose on RunComfy..."
+SOURCE_URL="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500"
+
+runcomfy run openai/gpt-image-2/edit \
+  --input "{
+    \"prompt\": \"Generate one canonical digital pet sprite based on the yellow electric rodent theme. EXAGGERATED chibi proportions: the head occupies about 60 percent of the total figure height; body and legs are tiny, stubby, and short. Electric yellow fur, long pointed ears with black tips, rosy red circular cheeks, and a lightning bolt-shaped tail. The whole pet figure must fit within a near-square bounding box (overall aspect close to 1:1). Pixel-art-adjacent low-resolution mascot, chunky whole-body silhouette, thick dark 2px outline, visible stepped pixel edges, limited palette, flat cel shading, simple expressive face, tiny limbs. Centered in the image. No polished illustration, no painterly render, no anime key art, no 3D render, no glossy app-icon polish, no realistic detail. Background: solid flat magenta ${CHROMA} chroma-key fill outside the pet silhouette. The pet itself must not use the chroma-key color or any close-to-magenta highlights. No gradients, no shadows, no halos, no scenery, no text. Identity preserved from the input image.\",
+    \"images\": [\"${SOURCE_URL}\"],
+    \"size\": \"1024*1024\"
+  }" \
+  --output-dir "${RUN_DIR}/decoded/"
+
+BASE=\$(ls "\${RUN_DIR}/decoded/"*.png | head -1)
+if [ -z "\$BASE" ]; then
+    echo "❌ Error: Generation failed or file not found."
+    exit 1
+fi
+
+echo "✂️ Step 2: Normalizing into standard 192x208 canvas..."
+magick "\${BASE}" \
+  -fuzz 18% -transparent "\${CHROMA}" \
+  -alpha set \
+  -trim +repage \
+  -resize 192x208 \
+  -gravity center \
+  -background none \
+  -extent 192x208 \
+  "\${RUN_DIR}/cell.png"
+
+echo "🎬 Step 3: Compiling 9-row animation matrices with micro-transforms..."
+SRC="\${RUN_DIR}/cell.png"
+
+shift_cell() { magick "\$SRC" -background none -roll "+\${1}+\${2}" -alpha set "\$3"; }
+rotate_cell() { magick "\$SRC" -background none -distort SRT "\$1" -alpha set "\$2"; }
+make_blink() {
+  magick "\$SRC" -region 80x6+56+82 -fill "#FFF200" -colorize 70% -blur 0x0.5 +region "\$1"
+}
+blank_cell() { magick -size 192x208 xc:none -alpha set "PNG32:\$1"; }
+
+build_row() {
+  local row=\$1; shift
+  local i=0
+  for spec in "\$@"; do
+    local out="\${RUN_DIR}/cells/row\${row}-frame\${i}.png"
+    case "\$spec" in
+      base)      cp "\$SRC" "\$out" ;;
+      blink)     make_blink "\$out" ;;
+      shift:*)   IFS=':' read -r _ x y <<< "\$spec"; shift_cell "\$x" "\$y" "\$out" ;;
+      rotate:*)  IFS=':' read -r _ ang <<< "\$spec"; rotate_cell "\$ang" "\$out" ;;
+    esac
+    i=\$((i+1))
+  done
+  while [ "\$i" -lt 8 ]; do
+    blank_cell "\${RUN_DIR}/cells/row\${row}-frame\${i}.png"
+    i=\$((i+1))
+  done
+  magick "\${RUN_DIR}/cells/row\${row}-strip.png"
+}
+
+build_row 0 base base blink base base blink
+build_row 1 base shift:1:0 shift:2:-1 shift:1:0 base shift:-1:0 shift:-2:-1 shift:-1:0
+magick "\${RUN_DIR}/cells/row1-strip.png" -flop -alpha set "\${RUN_DIR}/cells/row2-strip.png"
+build_row 3 base shift:0:-1 base shift:0:-1
+build_row 4 shift:0:2 base shift:0:-8 shift:0:-2 base
+build_row 5 base shift:0:1 rotate:1 shift:0:1 shift:0:2 shift:0:1 rotate:-1 base
+build_row 6 base base shift:0:-1 base base shift:0:1
+build_row 7 base shift:0:-1 base shift:0:-1 base shift:0:-1
+build_row 8 base rotate:-2 base rotate:2 base base
+
+echo "🗺️ Step 4: Stacking strips into 1536x1872 master atlas..."
+magick "\${RUN_DIR}/cells/row0-strip.png" "\textnormal{\${RUN_DIR}/cells/row1-strip.png}" \
+       "\${RUN_DIR}/cells/row2-strip.png" "\${RUN_DIR}/cells/row3-strip.png" \
+       "\${RUN_DIR}/cells/row4-strip.png" "\${RUN_DIR}/cells/row5-strip.png" \
+       "\${RUN_DIR}/cells/row6-strip.png" "\${RUN_DIR}/cells/row7-strip.png" \
+       "\${RUN_DIR}/cells/row8-strip.png" -append -alpha set "\${RUN_DIR}/spritesheet.png"
+
+magick "\${RUN_DIR}/spritesheet.png" "/home/nishanth/openbrain/openbrain/pica/spritesheet.webp"
+
+echo "✨ Success! Pica configuration files compiled under ./openbrain/pica/"
+EOF
+chmod +x hatch-pica.sh
+./hatch-pica.sh
+======================================================================
+*/
+
+:root {
+  --pica-yellow: #fff200;
+  --pica-cheeks: #ff1a1a;
+  --pica-shadow: rgba(0, 0, 0, 0.15);
+}
+
+.openbrain-pet-pica {
+  width: 192px;
+  height: 208px;
+  image-rendering: pixelated;
+  background-image: url('pica/spritesheet.webp');
+  background-repeat: no-repeat;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

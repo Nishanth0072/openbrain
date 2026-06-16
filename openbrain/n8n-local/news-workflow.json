@@ -1,0 +1,83 @@
+{
+  "name": "Daily WhatsApp News Notification",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e456b9c9-2f22-4a0e-a612-1f4f5f148002",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [ 180, 240 ]
+    },
+    {
+      "parameters": {
+        "url": "https://feeds.bbci.co.uk/news/rss.xml"
+      },
+      "id": "18f9c15b-9d48-43d9-a78b-d51a6dfbf8a3",
+      "name": "Fetch BBC News RSS",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [ 400, 240 ]
+    },
+    {
+      "parameters": {
+        "operation": "limit",
+        "maxItems": 3
+      },
+      "id": "d7c88b77-3e28-4e86-9a29-01cd84e4f16b",
+      "name": "Limit to Top 3",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [ 620, 240 ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nlet text = \"*📰 Here is your Latest News Update!*\\n\\n\";\n\nitems.forEach((item, index) => {\n  text += `*${index + 1}. ${item.json.title}*\\n${item.json.link}\\n\\n`;\n});\n\nreturn [{ json: { message: text } }];"
+      },
+      "id": "f516dc02-86ec-4c6f-a859-9f76a52140bb",
+      "name": "Format as WhatsApp Text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [ 840, 240 ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:3000/api/send",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "YOUR_PHONE_NUMBER_HERE"
+            },
+            {
+              "name": "message",
+              "value": "={{ $json.message }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8c59367d-9310-410a-81a4-9e32ea270c32",
+      "name": "Send to WhatsApp API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [ 1060, 240 ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [ [ { "node": "Fetch BBC News RSS", "type": "main", "index": 0 } ] ]
+    },
+    "Fetch BBC News RSS": {
+      "main": [ [ { "node": "Limit to Top 3", "type": "main", "index": 0 } ] ]
+    },
+    "Limit to Top 3": {
+      "main": [ [ { "node": "Format as WhatsApp Text", "type": "main", "index": 0 } ] ]
+    },
+    "Format as WhatsApp Text": {
+      "main": [ [ { "node": "Send to WhatsApp API", "type": "main", "index": 0 } ] ]
+    }
+  }
+}

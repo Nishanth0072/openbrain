@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petal & Bloom | Premium Florist</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-seedling"></i> Petal & Bloom
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#shop">Shop Flowers</a>
+            <a href="#about">Our Story</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="cart-icon" id="cartToggle">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Freshly Picked Moments Delivered Daily</h1>
+            <p>Handcrafted bouquets, premium blooms, and curated arrangements designed to brighten up any space.</p>
+            <a href="#shop" class="btn">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Shop/Gallery Section -->
+    <section id="shop" class="shop-container">
+        <h2 class="section-title">Our Seasonal Collection</h2>
+        
+        <!-- Filter Tabs -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All Blooms</button>
+            <button class="filter-btn" data-filter="bouquets">Bouquets</button>
+            <button class="filter-btn" data-filter="roses">Roses</button>
+            <button class="filter-btn" data-filter="indoor">Indoor Plants</button>
+        </div>
+
+        <!-- Flower Grid -->
+        <div class="flower-grid" id="flowerGrid">
+            <!-- Flower Item 1 -->
+            <div class="flower-card" data-category="bouquets">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=500&q=80" alt="Pastel Dreams Bouquet">
+                </div>
+                <div class="flower-info">
+                    <h3>Pastel Dreams Bouquet</h3>
+                    <p class="price">$45.00</p>
+                    <button class="add-to-cart-btn"><i class="fa-solid fa-plus"></i> Add to Basket</button>
+                </div>
+            </div>
+
+            <!-- Flower Item 2 -->
+            <div class="flower-card" data-category="roses">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80" alt="Crimson Passion Roses">
+                </div>
+                <div class="flower-info">
+                    <h3>Crimson Passion Roses</h3>
+                    <p class="price">$55.00</p>
+                    <button class="add-to-cart-btn"><i class="fa-solid fa-plus"></i> Add to Basket</button>
+                </div>
+            </div>
+
+            <!-- Flower Item 3 -->
+            <div class="flower-card" data-category="indoor">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?auto=format&fit=crop&w=500&q=80" alt="Sun-kissed Monstera">
+                </div>
+                <div class="flower-info">
+                    <h3>Sun-kissed Monstera</h3>
+                    <p class="price">$32.00</p>
+                    <button class="add-to-cart-btn"><i class="fa-solid fa-plus"></i> Add to Basket</button>
+                </div>
+            </div>
+
+            <!-- Flower Item 4 -->
+            <div class="flower-card" data-category="bouquets">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=500&q=80" alt="Spring Burst Arrangement">
+                </div>
+                <div class="flower-info">
+                    <h3>Spring Burst Arrangement</h3>
+                    <p class="price">$48.00</p>
+                    <button class="add-to-cart-btn"><i class="fa-solid fa-plus"></i> Add to Basket</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section id="about" class="about-section">
+        <div class="about-wrapper">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=600&q=80" alt="Florist workshop">
+            </div>
+            <div class="about-text">
+                <h2>Grown with Love, Tied with Care</h2>
+                <p>At Petal & Bloom, we believe that flowers speak louder than words. Established in 2018, we sustainably source local plants and artisanal floral wrap to minimize waste while ensuring high-end fragrance and freshness.</p>
+                <div class="badges">
+                    <span><i class="fa-solid fa-truck-fast"></i> Same-Day Delivery</span>
+                    <span><i class="fa-solid fa-leaf"></i> 100% Sustainable Organic Eco-grow</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Order Section -->
+    <section id="contact" class="contact-section">
+        <h2>Custom Arrangements & Inquiries</h2>
+        <p>Planning a wedding, event, or want a custom basket built? Leave us a line below.</p>
+        
+        <form id="contactForm" class="contact-form">
+            <input type="text" id="name" placeholder="Your Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <textarea id="message" rows="5" placeholder="Tell us about what flowers you are looking for..." required></textarea>
+            <button type="submit" class="btn">Send Request</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Petal & Bloom Florists. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

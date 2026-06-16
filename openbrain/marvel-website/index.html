@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Nexus // Tactical Database</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Premium Interface Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- BACKGROUND COSMIC AMBIENCE -->
+    <div class="nebula-overlay"></div>
+    <div class="quantum-grid"></div>
+
+    <!-- MAIN INTERFACE CONTAINER -->
+    <div class="nexus-wrapper">
+        
+        <!-- CYBER HEADER -->
+        <header class="cyber-header">
+            <div class="logo-zone">
+                <i class="fa-solid fa-atom pulse-icon"></i>
+                <h1>MARVEL<span>NEXUS</span></h1>
+            </div>
+            <nav class="matrix-nav">
+                <a href="#database" class="nav-link active">CORE_DB</a>
+                <a href="#console" class="nav-link">SINGULARITY_MONITOR</a>
+            </nav>
+        </header>
+
+        <!-- MAIN CONTENT SEGMENT -->
+        <main id="database" class="database-section">
+            
+            <!-- SEGMENTED FILTERS WRAPPER -->
+            <div class="filter-wrapper">
+                <div class="gliding-box"></div>
+                <button class="control-btn active" data-filter="all">
+                    <i class="fa-solid fa-globe"></i> ALL_UNITS
+                </button>
+                <button class="control-btn" data-filter="avengers">
+                    <i class="fa-solid fa-shield-halved"></i> AVENGERS
+                </button>
+                <button class="control-btn" data-filter="guardians">
+                    <i class="fa-solid fa-rocket"></i> GUARDIANS
+                </button>
+            </div>
+
+            <!-- HIGH-DENSITY TACTICAL CARD MATRIX -->
+            <div class="matrix-grid">
+                
+                <!-- CARD 1: IRON MAN -->
+                <div class="matrix-card" data-team="avengers">
+                    <div class="card-glow" style="background: radial-gradient(circle at 50% 0%, rgba(255, 50, 50, 0.4), transparent 70%);"></div>
+                    <div class="hero-emblem-wrapper" style="background-image: linear-gradient(to bottom, rgba(10,11,16,0.3), rgba(10,11,16,0.85)), url('https://images.unsplash.com/photo-1608889175123-8ec330b86f84?auto=format&fit=crop&w=400&q=80'); background-size: cover; background-position: center;">
+                        <div class="emblem-graphic" style="--emblem-color: #ff3232; --emblem-glow: rgba(255,50,50,0.4);"><i class="fa-solid fa-jet-fighter"></i></div>
+                    </div>
+                    <div class="card-header">
+                        <span class="unit-id">UNIT // STARK-01</span>
+                        <span class="faction-tag avengers">AVENGERS</span>
+                    </div>
+                    <h2 class="hero-name">Iron Man</h2>
+                    <p class="hero-role">Tactical Vanguard / Engineering Supreme</p>
+                    <div class="metric-group">
+                        <div class="metric-row"><span>ENERGY OUTPUT</span><div class="bar-bg"><div class="bar-fill" style="width: 95%; background: #ff3232;"></div></div></div>
+                        <div class="metric-row"><span>TACTICAL INTEL</span><div class="bar-bg"><div class="bar-fill" style="width: 98%; background: #ff3232;"></div></div></div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: SPIDER-MAN -->
+                <div class="matrix-card" data-team="avengers">
+                    <div class="card-glow" style="background: radial-gradient(circle at 50% 0%, rgba(0, 150, 255, 0.4), transparent 70%);"></div>
+                    <div class="hero-emblem-wrapper" style="background-image: linear-gradient(to bottom, rgba(10,11,16,0.3), rgba(10,11,16,0.85)), url('https://images.unsplash.com/photo-1608889174609-d547167d3257?auto=format&fit=crop&w=400&q=80'); background-size: cover; background-position: center;">
+                        <div class="emblem-graphic" style="--emblem-color: #0096ff; --emblem-glow: rgba(0,150,255,0.4);"><i class="fa-solid fa-spider"></i></div>
+                    </div>
+                    <div class="card-header">
+                        <span class="unit-id">UNIT // PARKER-02</span>
+                        <span class="faction-tag avengers">AVENGERS</span>
+                    </div>
+                    <h2 class="hero-name">Spider-Man</h2>
+                    <p class="hero-role">Urban Reconnaissance / Agile Skirmisher</p>
+                    <div class="metric-group">
+                        <div class="metric-row"><span>AGILITY SCALE</span><div class="bar-bg"><div class="bar-fill" style="width: 99%; background: #0096ff;"></div></div></div>
+                        <div class="metric-row"><span>REFLEX PROFILE</span><div class="bar-bg"><div class="bar-fill" style="width: 96%; background: #0096ff;"></div></div></div>
+                    </div>
+                </div>
+
+                <!-- CARD 3: STAR-LORD -->
+                <div class="matrix-card" data-team="guardians">
+                    <div class="card-glow" style="background: radial-gradient(circle at 50% 0%, rgba(243, 156, 18, 0.4), transparent 70%);"></div>
+                    <div class="hero-emblem-wrapper" style="background-image: linear-gradient(to bottom, rgba(10,11,16,0.3), rgba(10,11,16,0.85)), url('https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=400&q=80'); background-size: cover; background-position: center;">
+                        <div class="emblem-graphic" style="--emblem-color: #f39c1c; --emblem-glow: rgba(243,156,18,0.4);"><i class="fa-solid fa-gun"></i></div>
+                    </div>
+                    <div class="card-header">
+                        <span class="unit-id">UNIT // QUILL-01</span>
+                        <span class="faction-tag guardians">GUARDIANS</span>
+                    </div>
+                    <h2 class="hero-name">Star-Lord</h2>
+                    <p class="hero-role">Fleet Commander / Exotic Ballistics</p>
+                    <div class="metric-group">
+                        <div class="metric-row"><span>STRATEGY RATING</span><div class="bar-bg"><div class="bar-fill" style="width: 82%; background: #f39c1c;"></div></div></div>
+                        <div class="metric-row"><span>COMBAT FLUIDITY</span><div class="bar-bg"><div class="bar-fill" style="width: 88%; background: #f39c1c;"></div></div></div>
+                    </div>
+                </div>
+
+                <!-- CARD 4: THOR -->
+                <div class="matrix-card" data-team="avengers">
+                    <div class="card-glow" style="background: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.4), transparent 70%);"></div>
+                    <div class="hero-emblem-wrapper" style="background-image: linear-gradient(to bottom, rgba(10,11,16,0.3), rgba(10,11,16,0.85)), url('https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=400&q=80'); background-size: cover; background-position: center;">
+                        <div class="emblem-graphic" style="--emblem-color: #00f0ff; --emblem-glow: rgba(0,240,255,0.4);"><i class="fa-solid fa-cloud-bolt"></i></div>
+                    </div>
+                    <div class="card-header">
+                        <span class="unit-id">UNIT // ODINSON-01</span>
+                        <span class="faction-tag avengers">AVENGERS</span>
+                    </div>
+                    <h2 class="hero-name">Thor Odinson</h2>
+                    <p class="hero-role">Cosmic Juggernaut / Atmospheric Control</p>
+                    <div class="metric-group">
+                        <div class="metric-row"><span>STRIKE VELOCITY</span><div class="bar-bg"><div class="bar-fill" style="width: 97%; background: #00f0ff;"></div></div></div>
+                        <div class="metric-row"><span>KINETIC IMPACT</span><div class="bar-bg"><div class="bar-fill" style="width: 100%; background: #00f0ff;"></div></div></div>
+                    </div>
+                </div>
+
+                <!-- CARD 5: GAMORA -->
+                <div class="matrix-card" data-team="guardians">
+                    <div class="card-glow" style="background: radial-gradient(circle at 50% 0%, rgba(46, 204, 113, 0.4), transparent 70%);"></div>
+                    <div class="hero-emblem-wrapper" style="background-image: linear-gradient(to bottom, rgba(10,11,16,0.3), rgba(10,11,16,0.85)), url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80'); background-size: cover; background-position: center;">
+                        <div class="emblem-graphic" style="--emblem-color: #2ecc71; --emblem-glow: rgba(46,204,113,0.4);"><i class="fa-solid fa-sword"></i></div>
+                    </div>
+                    <div class="card-header">
+                        <span class="unit-id">UNIT // ZEN-02</span>
+                        <span class="faction-tag guardians">GUARDIANS</span>
+                    </div>
+                    <h2 class="hero-name">Gamora</h2>
+                    <p class="hero-role">Infiltration Specialist / Martial Vanguard</p>
+                    <div class="metric-group">
+                        <div class="metric-row"><span>LETHALITY CLASS</span><div class="bar-bg"><div class="bar-fill" style="width: 96%; background: #2ecc71;"></div></div></div>
+                        <div class="metric-row"><span>CLOSE QUARTERS</span><div class="bar-bg"><div class="bar-fill" style="width: 94%; background: #2ecc71;"></div></div></div>
+                    </div>
+                </div>
+
+                <!-- CARD 6: SCARLET WITCH -->
+                <div class="matrix-card" data-team="avengers">
+                    <div class="card-glow" style="background: radial-gradient(circle at 50% 0%, rgba(155, 89, 182, 0.4), transparent 70%);"></div>
+                    <div class="hero-emblem-wrapper" style="background-image: linear-gradient(to bottom, rgba(10,11,16,0.3), rgba(10,11,16,0.85)), url('https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=400&q=80'); background-size: cover; background-position: center;">
+                        <div class="emblem-graphic" style="--emblem-color: #9b59b6; --emblem-glow: rgba(155,89,182,0.4);"><i class="fa-solid fa-wand-sparkles"></i></div>
+                    </div>
+                    <div class="card-header">
+                        <span class="unit-id">UNIT // MAXIMOFF-01</span>
+                        <span class="faction-tag avengers">AVENGERS</span>
+                    </div>
+                    <h2 class="hero-name">Scarlet Witch</h2>
+                    <p class="hero-role">Chaos Reality Distortion / Psionic Core</p>
+                    <div class="metric-group">
+                        <div class="metric-row"><span>REALITY WARPING</span><div class="bar-bg"><div class="bar-fill" style="width: 100%; background: #9b59b6;"></div></div></div>
+                        <div class="metric-row"><span>MENTAL SHIELDING</span><div class="bar-bg"><div class="bar-fill" style="width: 91%; background: #9b59b6;"></div></div></div>
+                    </div>
+                </div>
+
+                <!-- CARD 7: ROCKET RACCOON -->
+                <div class="matrix-card" data-team="guardians">
+                    <div class="card-glow" style="background: radial-gradient(circle at 50% 0%, rgba(230, 126, 34, 0.4), transparent 70%);"></div>
+                    <div class="hero-emblem-wrapper" style="background-image: linear-gradient(to bottom, rgba(10,11,16,0.3), rgba(10,11,16,0.85)), url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=400&q=80'); background-size: cover; background-position: center;">
+                        <div class="emblem-graphic" style="--emblem-color: #e67e22; --emblem-glow: rgba(230,126,34,0.4);"><i class="fa-solid fa-user-gear"></i></div>
+                    </div>
+                    <div class="card-header">
+                        <span class="unit-id">UNIT // 89Y12-PROP</span>
+                        <span class="faction-tag guardians">GUARDIANS</span>
+                    </div>
+                    <h2 class="hero-name">Rocket Raccoon</h2>
+                    <p class="hero-role">Heavy Munitions / Ordnance Mastermind</p>
+                    <div class="metric-group">
+                        <div class="metric-row"><span>EXPLOSIVE RANGE</span><div class="bar-bg"><div class="bar-fill" style="width: 93%; background: #e67e22;"></div></div></div>
+                        <div class="metric-row"><span>IMPROVISATION</span><div class="bar-bg"><div class="bar-fill" style="width: 97%; background: #e67e22;"></div></div></div>
+                    </div>
+                </div>
+
+                <!-- CARD 8: DOCTOR STRANGE -->
+                <div class="matrix-card" data-team="avengers">
+                    <div class="card-glow" style="background: radial-gradient(circle at 50% 0%, rgba(231, 76, 60, 0.4), transparent 70%);"></div>
+                    <div class="hero-emblem-wrapper" style="background-image: linear-gradient(to bottom, rgba(10,11,16,0.3), rgba(10,11,16,0.85)), url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80'); background-size: cover; background-position: center;">
+                        <div class="emblem-graphic" style="--emblem-color: #e74c3c; --emblem-glow: rgba(231,76,60,0.4);"><i class="fa-solid fa-eye-dropper"></i></div>
+                    </div>
+                    <div class="card-header">
+                        <span class="unit-id">UNIT // STRANGE-01</span>
+                        <span class="faction-tag avengers">AVENGERS</span>
+                    </div>
+                    <h2 class="hero-name">Doctor Strange</h2>
+                    <p class="hero-role">Mystic Defense Supreme / Chrono Analyst</p>
+                    <div class="metric-group">
+                        <div class="metric-row"><span>ARCANE POWER</span><div class="bar-bg"><div class="bar-fill" style="width: 98%; background: #e74c3c;"></div></div></div>
+                        <div class="metric-row"><span>DIMENSIONAL LOCK</span><div class="bar-bg"><div class="bar-fill" style="width: 95%; background: #e74c3c;"></div></div></div>
+                    </div>
+                </div>
+
+                <!-- CARD 9: BLACK PANTHER -->
+                <div class="matrix-card" data-team="avengers">
+                    <div class="card-glow" style="background: radial-gradient(circle at 50% 0%, rgba(142, 68, 173, 0.4), transparent 70%);"></div>
+                    <div class="hero-emblem-wrapper" style="background-image: linear-gradient(to bottom, rgba(10,11,16,0.3), rgba(10,11,16,0.85)), url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80'); background-size: cover; background-position: center;">
+                        <div class="emblem-graphic" style="--emblem-color: #8e44ad; --emblem-glow: rgba(142,68,173,0.4);"><i class="fa-solid fa-cat"></i></div>
+                    </div>
+                    <div class="card-header">
+                        <span class="unit-id">UNIT // TCHALLA-01</span>
+                        <span class="faction-tag avengers">AVENGERS</span>
+                    </div>
+                    <h2 class="hero-name">Black Panther</h2>
+                    <p class="hero-role">Stealth Vanguard / Vibranium Armor Core</p>
+                    <div class="metric-group">
+                        <div class="metric-row"><span>ABSORPTION EFFICIENCY</span><div class="bar-bg"><div class="bar-fill" style="width: 96%; background: #8e44ad;"></div></div></div>
+                        <div class="metric-row"><span>TACTICAL STEALTH</span><div class="bar-bg"><div class="bar-fill" style="width: 94%; background: #8e44ad;"></div></div></div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <hr class="cyber-divider">
+
+        <!-- SINGULARITY DIAGNOSTIC MONITOR -->
+        <section id="console" class="console-section">
+            <h2 class="section-title"><i class="fa-solid fa-circle-nodes"></i> ARTIFACT CONFIGURATOR</h2>
+            <div class="console-grid">
+                
+                <!-- NODE SELECTORS -->
+                <div class="node-selectors">
+                    <button class="node-gem selected-node" data-stone="space" style="--gem-color: #00bcff;"><i class="fa-solid fa-cube"></i> SPACE</button>
+                    <button class="node-gem" data-stone="reality" style="--gem-color: #ff2a55;"><i class="fa-solid fa-droplet"></i> REALITY</button>
+                    <button class="node-gem" data-stone="power" style="--gem-color: #c800ff;"><i class="fa-solid fa-bolt"></i> POWER</button>
+                    <button class="node-gem" data-stone="mind" style="--gem-color: #ffcc00;"><i class="fa-solid fa-brain"></i> MIND</button>
+                    <button class="node-gem" data-stone="soul" style="--gem-color: #ff7700;"><i class="fa-solid fa-eye"></i> SOUL</button>
+                    <button class="node-gem" data-stone="time" style="--gem-color: #00ff66;"><i class="fa-solid fa-hourglass"></i> TIME</button>
+                </div>
+
+                <!-- TELEMETRY FEED -->
+                <div id="consoleMonitor" class="console-monitor">
+                    <div class="console-status-bar">
+                        <span class="status-indicator">CONTAINED // ACTIVE</span>
+                        <span class="terminal-id">REF_ID // INFINITY_SYS_77</span>
+                    </div>
+                    <h3 class="console-title">Space Stone // Tesseract Matrix</h3>
+                    <p class="console-desc">Establishes a localized dimensional warp. Containment vessel holding steady at 98.4%. Quantum tunneling parameters allow immediate spatial displacement across active multi-universal hexes.</p>
+                </div>
+
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
