@@ -1,0 +1,8 @@
+`;// Track simple in-memory session histories per user to give the bot context
+const chatHistories = new Map();/Generates an AI response using the modern @google/genai SDK
+*/
+async function getAIResponse(userId, userMessage) {
+try {
+if (!chatHistories.has(userId)) {
+chatHistories.set(userId, []);
+}

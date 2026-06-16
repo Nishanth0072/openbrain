@@ -1,0 +1,423 @@
+:root {
+    --omnitrix-green: #00ff33;
+    --omnitrix-dark-green: #00330b;
+    --omnitrix-glow: rgba(0, 255, 51, 0.4);
+    --bg-black: #050b06;
+    --card-bg: #0c1a0e;
+    --panel-border: #1b3d22;
+    --text-primary: #e0fae5;
+    --text-secondary: #7fba8c;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-primary);
+    font-family: 'Share Tech Mono', monospace;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Sci-fi Scanline Overlay */
+.scanline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.omnitrix-glow {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,255,51,0.05) 0%, rgba(0,0,0,0) 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 2px solid var(--panel-border);
+    background: rgba(12, 26, 14, 0.5);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 10;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.omnitrix-badge {
+    width: 50px;
+    height: 50px;
+    background: #111;
+    border: 4px solid var(--panel-border);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 15px var(--omnitrix-glow);
+    animation: rotateBadge 8s linear infinite;
+}
+
+.badge-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 24px solid var(--omnitrix-green);
+}
+
+.badge-inner::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -14px;
+    width: 0;
+    height: 0;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-top: 24px solid var(--omnitrix-green);
+}
+
+@keyframes rotateBadge {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(36deg); }
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    color: #fff;
+    text-shadow: 0 0 10px var(--omnitrix-green);
+}
+
+h1 span {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--omnitrix-green);
+    letter-spacing: 5px;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    border: 1px solid var(--panel-border);
+    padding: 8px 15px;
+    background: rgba(0,0,0,0.4);
+}
+
+.pulse {
+    width: 8px;
+    height: 8px;
+    background-color: var(--omnitrix-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--omnitrix-green);
+    animation: beacon 1.5s infinite;
+}
+
+@keyframes beacon {
+    0% { transform: scale(0.9); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 12px var(--omnitrix-green); }
+    100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 5;
+}
+
+.control-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--panel-border);
+    color: var(--omnitrix-green);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 10px rgba(0,255,51,0.05);
+}
+
+.search-box input:focus {
+    border-color: var(--omnitrix-green);
+    box-shadow: 0 0 15px var(--omnitrix-glow), inset 0 0 10px rgba(0,255,51,0.1);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    background: transparent;
+    border: 1px solid var(--panel-border);
+    color: var(--text-secondary);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    letter-spacing: 1px;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--omnitrix-dark-green);
+    color: var(--omnitrix-green);
+    border-color: var(--omnitrix-green);
+    box-shadow: 0 0 10px rgba(0, 255, 51, 0.2);
+}
+
+.catalogue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.alien-card {
+    background: var(--card-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.alien-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: transparent;
+    transition: background 0.3s;
+}
+
+.alien-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--omnitrix-green);
+    box-shadow: 0 10px 20px rgba(0, 255, 51, 0.1);
+}
+
+.alien-card:hover::before {
+    background: var(--omnitrix-green);
+}
+
+.card-image-wrapper {
+    height: 220px;
+    background: linear-gradient(45deg, #09130a, #132615);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    border-bottom: 1px solid var(--panel-border);
+    position: relative;
+}
+
+.card-image-wrapper span {
+    filter: drop-shadow(0 0 10px rgba(0,255,51,0.3));
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.species-tag {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.alien-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+.stats-summary {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border-top: 1px dashed rgba(27, 61, 34, 0.4);
+    padding-top: 10px;
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 11, 6, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-content {
+    background: #09140a;
+    border: 2px solid var(--omnitrix-green);
+    width: 90%;
+    max-width: 700px;
+    position: relative;
+    box-shadow: 0 0 40px rgba(0, 255, 51, 0.2);
+    animation: modalSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlide {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 10;
+}
+
+.close-btn:hover {
+    color: var(--omnitrix-green);
+}
+
+.modal-body {
+    padding: 40px;
+}
+
+.modal-header-grid {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    align-items: center;
+}
+
+.modal-visual {
+    font-size: 6rem;
+    background: #0d210f;
+    padding: 20px 40px;
+    border: 1px solid var(--panel-border);
+}
+
+.modal-main-meta h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px var(--omnitrix-green);
+    margin-bottom: 5px;
+}
+
+.stat-row {
+    margin-bottom: 15px;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.stat-bar-container {
+    height: 8px;
+    background: #122915;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    background: var(--omnitrix-green);
+    box-shadow: 0 0 8px var(--omnitrix-green);
+    width: 0;
+    transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.abilities-container {
+    margin-top: 25px;
+}
+
+.abilities-container h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: var(--omnitrix-green);
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.ability-chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.chip {
+    padding: 6px 12px;
+    background: rgba(0, 255, 51, 0.08);
+    border: 1px solid rgba(0, 255, 51, 0.3);
+    font-size: 0.85rem;
+    border-radius: 20px;
+}
+

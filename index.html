@@ -1,0 +1,60 @@
+mv index.html ben10-catalogue/index.html 2>/dev/null || true
+cat << 'EOF' > ben10-catalogue/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omnitrix Data Matrix // Ben 10 Alien Catalogue</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scanline"></div>
+    <div class="omnitrix-glow"></div>
+
+    <header>
+        <div class="logo-container">
+            <div class="omnitrix-badge">
+                <div class="badge-inner"></div>
+            </div>
+            <h1>OMNITRIX <span>DATA MATRIX</span></h1>
+        </div>
+        <div class="system-status">
+            <span class="pulse"></span> SYSTEM: ONLINE // CODENAME: BEN 10
+        </div>
+    </header>
+
+    <main>
+        <section class="control-panel">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="SEARCH ALIEN DNA SIGNATURE...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-playlist="all">ALL PLAYLISTS</button>
+                <button class="filter-btn" data-playlist="classic">OS ORIGINAL 10</button>
+                <button class="filter-btn" data-playlist="af">ALIEN FORCE</button>
+                <button class="filter-btn" data-playlist="ua">ULTIMATE FORMS</button>
+            </div>
+        </section>
+
+        <section class="catalogue-grid" id="alien-grid">
+            </section>
+    </main>
+
+    <div class="modal-overlay" id="alien-modal">
+        <div class="modal-content">
+            <button class="close-btn" id="close-modal">&times;</button>
+            <div class="modal-body" id="modal-data">
+                </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+EOF
+ls -la ben10-catalogue/
+
